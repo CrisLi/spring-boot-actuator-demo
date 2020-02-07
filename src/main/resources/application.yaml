@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: actuator-demo
+
+info:
+  build:
+    name: "@project.artifactId@"
+    description: "@project.description@"
+    version: "@project.version@"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    restart:
+      enabled: true
+
+logging:
+  level:
+    org.chris.demo.actuator: DEBUG
+#    org.springframework.security: DEBUG
