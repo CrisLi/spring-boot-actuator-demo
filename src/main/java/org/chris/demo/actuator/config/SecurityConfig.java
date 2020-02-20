@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.actuate.health.HealthEndpoint;
 import org.springframework.boot.actuate.info.InfoEndpoint;
+import org.springframework.boot.actuate.metrics.export.prometheus.PrometheusScrapeEndpoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -37,7 +38,7 @@ public class SecurityConfig {
                 .and()
                 .requestMatcher(EndpointRequest.toAnyEndpoint())
                 .authorizeRequests(requests -> requests
-                    .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class)).permitAll()
+                    .requestMatchers(EndpointRequest.to(HealthEndpoint.class, InfoEndpoint.class, PrometheusScrapeEndpoint.class)).permitAll()
                     .anyRequest().hasRole(ENDPOINT_ADMIN))
                 .httpBasic();
         }

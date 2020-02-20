@@ -16,6 +16,9 @@ management:
   endpoint:
     restart:
       enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
 
 logging:
   level:

@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  spring-boot-actuator-app:
+    image: spring-boot-actuator-app
+    ports:
+      - "8080:8080"
+  prometheus:
+    image: prom/prometheus 
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    links:
+      - spring-boot-actuator-app
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    links:
+      - prometheus
